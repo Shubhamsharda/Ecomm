@@ -11,12 +11,12 @@ namespace Ekart.Services
     {
         private readonly IMongoCollection<Products> _products;
 
-        public ProductService(EKartDatabaseSettings settings)
+        public ProductService(IEKartDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _products = database.GetCollection<Products>(settings.EKartCollectionName);
+            _products = database.GetCollection<Products>(settings.EKartCollectionProducts);
 
         }
 

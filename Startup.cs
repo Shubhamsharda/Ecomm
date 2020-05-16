@@ -33,10 +33,11 @@ namespace Ekart
             services.Configure<EKartDatabaseSettings>(
                 Configuration.GetSection(nameof(EKartDatabaseSettings)));
 
-            services.AddSingleton<EKartDatabaseSettings>(sp =>
+            services.AddSingleton<IEKartDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<EKartDatabaseSettings>>().Value);
 
             services.AddSingleton<ProductService>();
+            services.AddSingleton<CustomerService>();
 
             services.AddControllers();
         }
